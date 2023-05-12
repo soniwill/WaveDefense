@@ -24,11 +24,14 @@ public class TestMovements : MonoBehaviour
 
     private Vector3 center; // o centro do círculo
     private float angle = 0f;
+
+    public Vector3 ballVel;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+     ballVel = Vector3.left;
+     //bigBall.velocity = ballVel;
     }
 
     
@@ -53,14 +56,14 @@ public class TestMovements : MonoBehaviour
 
     private void moveCube()
     {
-        angle += Time.fixedDeltaTime * speed;
-        float x = radius * Mathf.Cos(angle);
-        float y = radius * Mathf.Sin(angle);
+        //angle += Time.fixedDeltaTime * speed;
+        //float x = radius * Mathf.Cos(angle);
+        //float y = radius * Mathf.Sin(angle);
 
         // cria um vetor na direção das coordenadas calculadas e aplica uma força
-        Vector3 forceDirection = new Vector3(x, 0f, y).normalized;
-        Vector3 force = forceDirection * forceMagnitude;
-        bigBall.AddForce(force, ForceMode.Acceleration);
+        //Vector3 forceDirection = new Vector3(x, 0f, y).normalized;
+        //Vector3 force = forceDirection * forceMagnitude;
+        bigBall.AddForce(bigBall.velocity.normalized*speed, ForceMode.Impulse);
         // angle += speed * Time.fixedDeltaTime;
         // Vector3 offset = new Vector3(Mathf.Sin(angle)*radius, 0f, Mathf.Cos(angle)*radius);
         // Vector3 newPosition = transform.position + offset;
