@@ -157,6 +157,27 @@ namespace MovementAlgorithms
 
         }
     }
+
+    public static class Pursue
+    {
+        public static SteeringDataOutput GetSteering(kinematicData pursuer, kinematicData target, float maxAccel, float maxPrediction =0.00001f)
+        {
+            var dir = target.Position - pursuer.Position;
+            var distance = dir.magnitude;
+            var speed = pursuer.Velocity.magnitude;
+            var prediction = 0.0f;
+
+            if (speed <= distance / maxPrediction)
+                prediction = maxPrediction;
+            else
+            {
+                prediction = distance / speed;
+            }
+
+            target.Position += target.Velocity * prediction;
+            return Seek.GetSteering(pursuer, target, maxAccel);
+        }
+    }
     
     
     public static class SteeringBehavior 
