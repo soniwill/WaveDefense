@@ -85,7 +85,7 @@ public class TestMovements : MonoBehaviour
        }
        else
        {
-           steeringOutput = Pursue.GetSteering(cubeData, targetKinematicData, maxAccel, 15f);
+           steeringOutput = Pursue.GetSteering(cubeData, targetKinematicData, maxAccel, 5f);
        }
 
         // aplica a velocidade no Rigidbody
